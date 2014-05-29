@@ -38,7 +38,7 @@ end
 rng('default');
 [Bearly,FitInfoEarly] = lassoglm(varStore',isEarlySeizure','binomial','lambda',1e-3);
 
-earlyIndx = FitInfoEarly.Index1SE;
+earlyIndx = 1; % if you change the above to use the 'CV' parameter, then this should be set to FitInfoEarly.Index1SE;
 
 cnst = FitInfoEarly.Intercept(earlyIndx);
 mdlEarly = [cnst;Bearly(:,earlyIndx)];
@@ -46,7 +46,7 @@ mdlEarly = [cnst;Bearly(:,earlyIndx)];
 rng('default');
 [Bbasic,FitInfoBasic] = lassoglm(varStore',isSeizure','binomial','lambda',1e-3);
 
-basicIndx = FitInfoBasic.Index1SE;
+basicIndx = 1; % if you change to use 'CV' set this equal to FitInfoBasic.Index1SE;
 
 cnst = FitInfoBasic.Intercept(basicIndx);
 mdlBasic = [cnst;Bbasic(:,basicIndx)];
